@@ -20,8 +20,8 @@ I.e. The steps can be summarised as:
 2. Train and export a model
 3. Preprocessing and prediction: load pretrained model, feed it live preprocessed webcam input, display the results. 
 
-**A small sample of the training data - including predictions of the trained model - can be seen [here](http://memo.tv/gart_canny_256_pix2pix/)**
-Left-most and right-most columns are the training data, middle column is what the model learnt to produce. The number on the left is the training iteration, so actually you should see an improvement with every increase in iteration (groups of 8 rows).
+**A small sample of the training data - including predictions of the trained model - can be seen [here](http://memo.tv/gart_canny_256_pix2pix/).**
+Left-most and right-most columns are the training data, middle column is what the model learnt to produce at each training iteration (the number on the left, which goes from 20,000 to 58,000). 
 
 **You can download my pretrained model from the [Releases tab](https://github.com/memo/webcam-pix2pix-tensorflow/releases).**
 
