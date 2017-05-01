@@ -11,7 +11,7 @@ This is the source code and pretrained model for the webcam pix2pix demo I poste
 
 
 
-#Overview
+# Overview
 The code in this repo actually has nothing to do with pix2pix, GANs or even deep learning. It just loads *any* pre-trained tensorflow model (as long as it complies with a few constraints), feeds it a processed webcam input, and displays the output. It just so happens that the model I trained and used is pix2pix (details below). 
 
 I.e. The steps can be summarised as:
@@ -21,7 +21,7 @@ I.e. The steps can be summarised as:
 3. Preprocessing and prediction: load pretrained model, feed it live preprocessed webcam input, display the results. 
 
 
-#1. Data
+# 1. Data
 I scraped art collections from around the world from the [Google Art Project on wikimedia](https://commons.wikimedia.org/wiki/Category:Google_Art_Project_works_by_collection). A **lot** of the images are classical portraits of rich white dudes, so I only used about 150 collections, trying to keep the data as geographically and culturally diverse as possible (full list I used is [here](./gart_canny_256_info/collections.txt)). But the data is still very euro-centric, as there might be hundreds or thousands of scans from a single European museum, but only 8 scans  from an Arab museum. 
 
 I downloaded the 300px versions of the images, and ran a batch process to :
@@ -31,12 +31,12 @@ I downloaded the 300px versions of the images, and ran a batch process to :
 
 I also ran a batch process to take multiple crops from the images (instead of a non-uniform resizing) but I haven't trained on that yet. Instead of canny edge detection, I also started looking into the much better  'Holistically-Nested Edge Detection' (aka [HED](https://github.com/s9xie/hed)) by Xie and Tu (as used by the original pix2pix paper), but haven't trained on that yet either. 
 
-A small sample of the training data - including predictions of the trained model - can be seen [here](./gart_canny_256_info/index.html) (left-most and right-most columns are the training data, middle column is what the model learnt to produce).
+A small sample of the training data - including predictions of the trained model - can be seen [here](http://memo.tv/gart_canny_256_pix2pix/) (left-most and right-most columns are the training data, middle column is what the model learnt to produce).
 
 This is done by the [preprocess.py](preprocess.py) script (sorry no command line arguments, edit the script to change paths and settings, should be quite self-explanatory).
 
 
-#2. Training
+# 2. Training
 The training and architecture is straight up '*Image-to-Image Translation with Conditional Adversarial Nets*' by Isola et al (aka [pix2pix](https://phillipi.github.io/pix2pix/)). I trained with the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow) by @affinelayer. Infinite thanks to the authors (and everyone they built on) for making their code open-source!
 
 I only made one infinitesimally tiny change to the tensorflow-pix2pix code, and that is to add *tf.Identity* to the generator inputs and outputs with a human-readable name, so that I can feed and fetch the tensors with ease. **So if you wanted to use your own models with this application, you'd need to do the same**. (Or make a note of the input/output tensor names, and modify the json accordingly, more on this below). 
@@ -46,7 +46,7 @@ I only made one infinitesimally tiny change to the tensorflow-pix2pix code, and 
 
 **You can download my pretrained model from the [Releases tab](https://github.com/memo/webcam-pix2pix-tensorflow/releases).**
 
-#3. Preprocessing and prediction
+# 3. Preprocessing and prediction
 What this particular application does is load the pretrained model, do live preprocessing of a webcam input, and feed it to the model. I do the preprocessing with old fashioned basic computer vision, using opencv. It's really very minimal and basic. You can see the GUI below (the GUI uses [pyqtgraph](http://www.pyqtgraph.org/)).
 
 ![ruby](https://cloud.githubusercontent.com/assets/144230/25586317/b3f4e65e-2e96-11e7-809d-5a6296d2ed64.png)
@@ -70,7 +70,7 @@ pre_time_lerp is before going into the model, and post_time_lerp is after coming
 
 Zero for any of the temporal blurs disables them. Values for these depend on your taste. For both of the videos above I had all of pre_model blurs (i.e. accum_w1, accum_w2 and pre_time_lerp)  set to zero, and played with different post_time_lerp settings ranging from 0.0 (very flickery and flashing) to 0.9 (very slow and fadey and 'dreamy'). Usually around 0.5-0.8 is my favourite range. 
 
-#Using other models
+# Using other models
 If you'd like to use a different model, you need to setup a JSON file similar to the one below. 
 The motivation here is that I actually have a bunch of JSONs in my app/models folder which I can dynamically scan and reload, and the model data is stored elsewhere on other disks, and the app can load and swap between models at runtime and scale inputs/outputs etc automatically. 
 
