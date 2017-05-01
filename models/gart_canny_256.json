@@ -1,0 +1,14 @@
+{
+	"name" : "gart_canny_256",
+	"ckpt_path" : "./models/gart_canny_256",
+	"input" : {
+		"shape" : [256, 256, 3], 
+		"range" : [-1.0, 1.0],
+		"opname" : "generator/generator_inputs"
+	},
+	"output" : {
+		"shape" : [256, 256, 3], 
+		"range" : [-1.0, 1.0],
+		"opname" : "generator/generator_outputs"
+	}
+}

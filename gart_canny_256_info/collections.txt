@@ -1,0 +1,128 @@
+Data scraped from https://commons.wikimedia.org/wiki/Category:Google_Art_Project_works_by_collection
+
+Collections used:
+------------------
+Albertina, Vienna
+al Sabah Collection, Kuwait
+Art Gallery of New South Wales
+Art Gallery of Ontario
+Art Gallery of South Australia
+Ateneum Art Museum
+Auckland Art Gallery Toi o Tāmaki
+Australian Rock Art
+batch.sh
+Benaki Museum of Greek Civilization
+Benaki Museum of Islamic Art
+Bridgestone Museum of Art, Ishibashi Foundation
+Brooklyn Museum
+Brukenthal National Museum
+Cooper-Hewitt, National Design Museum
+Dionísio Pinheiro And Alice Cardoso Pinheiro Foundation
+Dulwich Picture Gallery
+Espoo Museum of Modern Art
+Fondazione Musei Senesi
+Freer Gallery of Art, Smithsonian
+Galerie Neue Meister – New Masters Gallery
+Hong Kong Museum of Art
+Hunan Provincial Museum ( 湖南省博物馆 )
+Hungarian National Gallery
+Israel Museum, Jerusalem
+Iziko South African National Gallery
+Jewish Museum, London
+Jewish Museum, New York
+Kunsthistorisches Museum Vienna (Museum of Fine Arts)
+Latvian National Museum of Art
+LehmbruckMuseum
+MALI, Museo de Arte de Lima
+Malmö Konstmuseum
+Mathaf: Arab Museum of Modern Art
+MoMA,  Museum of Modern Art
+Musée d’Art Classique de Mougins
+Musée de l'Orangerie
+Musée d’Orsay, Paris
+Museo Art Nouveau y Art Déco - Casa Lis
+Museo de Arte de Puerto Rico
+Museo de Arte Precolombino e Indígena (MAPI), Uruguay
+Museo de Bellas Artes de Bilbao
+Museo del Greco
+Museo Lázaro Galdiano
+Museo Nacional de Arte
+Museo Nacional de Artes Decorativas
+Museo Nacional de Bellas Artes de Buenos Aires
+Museo Poldi Pezzoli
+Museo Reina Sofia
+Museo Sefardí
+Museu Coleção Berardo
+Museum Boijmans Van Beuningen
+Museum Kunstpalast, Dusseldorf
+Museum of Applied Arts, Budapest
+Museum of Fine Arts, Boston
+Museum of Fine Arts, Budapest
+Museum of Fine Arts, Houston
+Museum of Islamic Art, Qatar
+Museum of Latin American Art
+Museu Nacional d'Art de Catalunya - MNAC, Barcelona
+Muzeum Sztuki, Łódź
+National Center of Folk Culture - Ivan Honchar Museum
+National Galleries of Scotland
+National Gallery in Prague
+National Gallery, London
+National Gallery of Art, Washington DC
+National Gallery of Australia, Canberra
+National Gallery Of Modern Art (NGMA), New Delhi
+National Gallery of Victoria
+National Gallery Singapore
+National Museum, Delhi
+National Museum in Warsaw
+National Museum of Korea
+National Museum of Slovenia
+National Museum of Western Art
+National Museums of World Culture
+National Palace Museum, Taiwan
+National Portrait Gallery
+Nordiska Museet
+Ohara Museum of Art
+Osaka City Museum of Fine Arts
+Palace of Versailles
+Palazzo Vecchio Museum
+Patricia Phillip Frost Art Museum
+Pavle Beljanski Memorial Collection
+Pera Museum
+Philadelphia Museum of Art
+Phillips Collection
+Pinacoteca do Estado de São Paulo
+Ptuj Ormož Regional Museum
+Pushkin State Museum of Fine Arts, Moscow
+Real Academia de Bellas Artes de San Fernando
+Rijksmuseum
+Rock Art Research Institute, University of  Witwatersrand, Johannesburg
+Royal Castle in Warsaw
+Royal Collection of  United Kingdom
+Royal Museums of Fine Arts of Belgium
+Royal Palace Amsterdam
+Rüstkammer and Türckische Cammer - Armoury and Turkish Chamber
+Sakıp Sabancı Museum
+Sénat
+Skagens Museum
+Skokloster Castle
+Smithsonian American Art Museum
+Städel Museum
+Staedtische Galerie im Lenbachhaus und Kunstbau
+Statens Museum for Kunst
+State Russian Museum, St. Petersburg
+State Tretyakov Gallery
+St. Sophia of Kyiv
+Tate Britain
+Te Papa
+Thorvaldsens Museum
+Tokyo National Museum
+Toledo Museum of Art
+Uffizi Gallery
+Van Gogh Museum
+Victoria and Albert Museum
+Walker Art Gallery, Liverpool
+Walters Art Museum
+White House
+Whitney Museum of American Art
+Wilanów Palace Museum
+Yale Center for British Art
