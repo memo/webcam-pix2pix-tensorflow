@@ -41,7 +41,7 @@ This is done by the [preprocess.py](preprocess.py) script (sorry no command line
 
 
 # 2. Training
-The training and architecture is straight up '*Image-to-Image Translation with Conditional Adversarial Nets*' by Isola et al (aka [pix2pix](https://phillipi.github.io/pix2pix/)). I trained with the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow) by @affinelayer. Infinite thanks to the authors (and everyone they built on) for making their code open-source!
+The training and architecture is straight up '*Image-to-Image Translation with Conditional Adversarial Nets*' by Isola et al (aka [pix2pix](https://phillipi.github.io/pix2pix/)). I trained with the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow) by @affinelayer, which is also what is powering that '[sketch-to-cat](https://affinelayer.com/pixsrv/)'- demo that went viral recently. Infinite thanks to the authors (and everyone they built on) for making their code open-source!
 
 I only made one infinitesimally tiny change to the tensorflow-pix2pix code, and that is to add *tf.Identity* to the generator inputs and outputs with a human-readable name, so that I can feed and fetch the tensors with ease. **So if you wanted to use your own models with this application, you'd need to do the same**. (Or make a note of the input/output tensor names, and modify the json accordingly, more on this below). 
 
@@ -82,12 +82,12 @@ The motivation here is that I actually have a bunch of JSONs in my app/models fo
 		"input" : { # info for input tensor
 			"shape" : [256, 256, 3],  # expected shape (height, width, channels) EXCLUDING batch (assumes additional axis==0 will contain batch)
 			"range" : [-1.0, 1.0], # expected range of values 
-			"opname" : "generator/generator_inputs" # name of tensor
+			"opname" : "generator/generator_inputs" # name of tensor (':0' is appended in code)
 		},
 		"output" : { # info for output tensor
 			"shape" : [256, 256, 3], # shape that is output (height, width, channels) EXCLUDING batch (assumes additional axis==0 will contain batch)
 			"range" : [-1.0, 1.0], # value range that is output
-			"opname" : "generator/generator_outputs" # name of tensor
+			"opname" : "generator/generator_outputs" # name of tensor (':0' is appended in code)
 		}
 	}
 
@@ -100,10 +100,10 @@ The motivation here is that I actually have a bunch of JSONs in my app/models fo
 
 Tested only on Ubuntu 16.04, but should work on other platforms. 
 
-I use the Anaconda python distribution which comes with almost everything you need, then it's as simple as:
+I use the Anaconda python distribution which comes with almost everything you need, then it's (hopefully) as simple as:
 1. Download and install anaconda from https://www.continuum.io/downloads
 2. Install tensorflow https://www.tensorflow.org/install/ (Which - if you have anaconda - is often quite straight forward since most dependencies are included)
-3. Install opencv and pyqtgraph[pix2pix](https://phillipi.github.io/pix2pix/
+3. Install opencv and pyqtgraph
 
 	conda install -c menpo opencv3
 	conda install pyqtgraph
