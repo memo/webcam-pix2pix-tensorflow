@@ -12,20 +12,13 @@ This is the source code and pretrained model for the webcam pix2pix demo I poste
 
 
 # Overview
-The code in this repo actually has nothing to do with pix2pix, GANs or even deep learning. It just loads *any* pre-trained tensorflow model (as long as it complies with a few constraints), feeds it a processed webcam input, and displays the output. It just so happens that the model I trained and used is pix2pix (details below). 
+The code in this particular repo actually has nothing to do with pix2pix, GANs or even deep learning. It just loads *any* pre-trained tensorflow model (as long as it complies with a few constraints), feeds it a processed webcam input, and displays the output of the model. It just so happens that the model I trained and used is pix2pix (details below). 
 
 I.e. The steps can be summarised as:
 
 1. Collect data: scrape the web for a ton of images, preprocess and prepare training data
 2. Train and export a model
 3. Preprocessing and prediction: load pretrained model, feed it live preprocessed webcam input, display the results. 
-
-**A small sample of the training data - including predictions of the trained model - can be seen [here](http://memo.tv/gart_canny_256_pix2pix/).**
-Left-most and right-most columns are the training data, middle column is what the model learnt to produce at each training iteration (the number on the left, which goes from 20,000 to 58,000). 
-
-**You can download my pretrained model from the [Releases tab](https://github.com/memo/webcam-pix2pix-tensorflow/releases).**
-
-
 
 # 1. Data
 I scraped art collections from around the world from the [Google Art Project on wikimedia](https://commons.wikimedia.org/wiki/Category:Google_Art_Project_works_by_collection). A **lot** of the images are classical portraits of rich white dudes, so I only used about 150 collections, trying to keep the data as geographically and culturally diverse as possible (full list I used is [here](./gart_canny_256_info/collections.txt)). But the data is still very euro-centric, as there might be hundreds or thousands of scans from a single European museum, but only 8 scans  from an Arab museum. 
@@ -40,13 +33,25 @@ I also ran a batch process to take multiple crops from the images (instead of a 
 This is done by the [preprocess.py](preprocess.py) script (sorry no command line arguments, edit the script to change paths and settings, should be quite self-explanatory).
 
 
-# 2. Training
-The training and architecture is straight up '*Image-to-Image Translation with Conditional Adversarial Nets*' by Isola et al (aka [pix2pix](https://phillipi.github.io/pix2pix/)). I trained with the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow) by @affinelayer, which is also what is powering that '[sketch-to-cat](https://affinelayer.com/pixsrv/)'- demo that went viral recently. Infinite thanks to the authors (and everyone they built on) for making their code open-source!
+**A small sample of the training data - including predictions of the trained model - can be seen [here](http://memo.tv/gart_canny_256_pix2pix/).**
+Right-most column is the original image, left-most column is the preprocessed version. These two images are fed into the pix2pix network as a 'pair' to be trained on. The middle column is what the model learns to produce *given only the left-most column*. (The images show each training iteration - i.e. the number on the left, which goes from 20,000 to 58,000, so it gradually gets better the further down you go on the page). 
 
-I only made one infinitesimally tiny change to the tensorflow-pix2pix code, and that is to add *tf.Identity* to the generator inputs and outputs with a human-readable name, so that I can feed and fetch the tensors with ease. **So if you wanted to use your own models with this application, you'd need to do the same**. (Or make a note of the input/output tensor names, and modify the json accordingly, more on this below). 
+[![training_data](https://cloud.githubusercontent.com/assets/144230/25617554/bd2f3c16-2f3a-11e7-9e25-75792fbc3380.png)](http://memo.tv/gart_canny_256_pix2pix/)
+
+
+I also trained an unconditional GAN (i.e. normal [DCGAN](https://github.com/Newmu/dcgan_code) on this same training data. An example of its output can be seen below. (This is generating 'completely random' images that resemble the training data). 
+
+![dcgan](https://cloud.githubusercontent.com/assets/144230/25617262/58c9dc46-2f39-11e7-97b9-d546cc6cc00c.png)
+
+
+# 2. Training
+The training and architecture is straight up '*Image-to-Image Translation with Conditional Adversarial Nets*' by Isola et al (aka [pix2pix](https://phillipi.github.io/pix2pix/)). I trained with the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow) by @affinelayer (Christopher Hesse), which is also what's powering that '[sketch-to-cat](https://affinelayer.com/pixsrv/)'- demo that went viral recently. He also wrote a nice [tutorial](https://affinelayer.com/pix2pix/) on how pix2pix works. Infinite thanks to the authors (and everyone they built on) for making their code open-source!
+
+I only made one infinitesimally tiny change to the tensorflow-pix2pix training code, and that is to add *tf.Identity* to the generator inputs and outputs with a human-readable name, so that I can feed and fetch the tensors with ease. **So if you wanted to use your own models with this application, you'd need to do the same**. (Or make a note of the input/output tensor names, and modify the json accordingly, more on this below). 
+
+**You can download my pretrained model from the [Releases tab](https://github.com/memo/webcam-pix2pix-tensorflow/releases).**
 
 ![pix2pix_diff](https://cloud.githubusercontent.com/assets/144230/25583118/4e4f9794-2e88-11e7-8762-889e4113d0b8.png)
-
 
 # 3. Preprocessing and prediction
 What this particular application does is load the pretrained model, do live preprocessing of a webcam input, and feed it to the model. I do the preprocessing with old fashioned basic computer vision, using opencv. It's really very minimal and basic. You can see the GUI below (the GUI uses [pyqtgraph](http://www.pyqtgraph.org/)).
@@ -113,10 +118,8 @@ I use the Anaconda python distribution which comes with almost everything you ne
 # Acknowledgements
 Infinite thanks once again to
 
-* Isola et al for [pix2pix](https://phillipi.github.io/pix2pix/)
-* @affinelayer for the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow)
+* Isola et al for [pix2pix](https://phillipi.github.io/pix2pix/) and @affinelayer (Christopher Hesse) for the [tensorflow port](https://github.com/affinelayer/pix2pix-tensorflow)
+* Radford et al for [DCGAN](https://github.com/Newmu/dcgan_code) and @carpedm20 (Taehoon Kim) for the [tensorflow port](https://github.com/carpedm20/DCGAN-tensorflow)
 * The [tensorflow](https://www.tensorflow.org/) team
 * Countless others who have contributed to the above, either directly or indirectly, or opensourced their own research making the above possible
-
-
-    
+* My [wife](http://janelaurie.com/) for putting up with me working on a bank holiday to clean up my code and upload this repo. 
